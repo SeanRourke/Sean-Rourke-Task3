@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Rate {
+    private final CarParkKind kind;
     private final BigDecimal hourlyNormalRate;
     private final BigDecimal hourlyReducedRate;
     private ArrayList<Period> reduced = new ArrayList<>();
@@ -35,6 +36,7 @@ public class Rate {
             throw new IllegalArgumentException("The periods overlaps");
         }
         // made variables final
+        this.kind = kind;
         this.hourlyNormalRate = normalRate;
         this.hourlyReducedRate = reducedRate;
         this.reduced = reducedPeriods;
