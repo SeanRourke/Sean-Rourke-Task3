@@ -3,14 +3,16 @@ package cm;
 import java.util.List;
 
 public class Period {
-     private int startHour;
-     private int endHour;
+    // made variables final
+    private final int startHour;
+    private final int endHour;
 
     public Period(int start, int end) {
         if (start >= end) {
             throw new IllegalArgumentException("start of period cannot be later or equal to end of period");
         }
-        if (start < 0 || start > 24 || end < 0 || end > 24) {
+        // removed 'end < 0' condition
+        if (start < 0 || start > 24 || end > 24) {
             throw new IllegalArgumentException("start of period and end of period must be between 0 and 24");
         }
         this.startHour = start;
@@ -27,7 +29,8 @@ public class Period {
     }
 
     private static Boolean isIn(int hour, List<Period> list) {
-        Boolean isIn = false;
+        // changed Boolean to boolean
+        boolean isIn = false;
         int i = 0;
         while (i < list.size() && !isIn) {
             isIn = list.get(i).isIn(hour);
@@ -38,7 +41,7 @@ public class Period {
 
     /**
      * The duration of a period
-     * @return the number of whole hours a this period covers
+     * @return the number of whole hours this period covers
      */
     public int duration() {
         return this.endHour - this.startHour;
@@ -49,14 +52,15 @@ public class Period {
      * @param list the list of periods to check
      * @return the number of full hours covered by this period
      */
-    public int occurences(List<Period> list) {
-        int occurences = 0;
+    // corrected spelling of occurrences
+    public int occurrences(List<Period> list) {
+        int occurrences = 0;
         for (int hour = this.startHour; hour < this.endHour; hour++) {
             if (isIn(hour, list)) {
-                occurences++;
+                occurrences++;
             }
         }
-        return occurences;
+        return occurrences;
     }
 
     public boolean overlaps(Period period) {
